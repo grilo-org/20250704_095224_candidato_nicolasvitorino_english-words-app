@@ -79,7 +79,7 @@ Utilizei a linguagem **Dart** com framework **Flutter**, gerenciei os estados ut
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/english-words-app.git
+git clone https://github.com/nicolasvitorino/english-words-app.git
 cd english-words-app
 
 # Instale as dependências
