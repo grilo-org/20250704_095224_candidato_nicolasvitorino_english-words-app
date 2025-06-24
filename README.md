@@ -6,7 +6,7 @@ Aplicativo desenvolvido para Android e IOS utilizado para explorar, visualizar e
 
 ## Tecnologias Utilizadas
 
-Utilizei a linguagem **Dart** com framework **Flutter**, gerenciei os estados utilizando **Provider**, utilizei o banco de dados offline **SQLite (sqflite), para a listagem utilizei um **JSON local pré-carregado (words_dictionary.json)**, já para os detalhes da palavra (significado, fonética, áudio) utilizei a **Free Dictionary API**, para reproduzir os áudios da API utilizei o pacote **just_audio**.
+Utilizei a linguagem **Dart** com framework **Flutter**, gerenciei os estados utilizando **Provider**, utilizei o banco de dados offline **SQLite (sqflite)**, para a listagem utilizei um **JSON local pré-carregado (words_dictionary.json)**, já para os detalhes da palavra (significado, fonética, áudio) utilizei a **Free Dictionary API**, para reproduzir os áudios da API utilizei o pacote **just_audio**.
 
 ---
 
