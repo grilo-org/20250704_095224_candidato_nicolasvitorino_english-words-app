@@ -4,49 +4,39 @@ import 'package:flutter/material.dart';
 class WordState extends ChangeNotifier {
   final WordRepository _wordRepository;
 
-  final int _pageSize = 50;
-  int _offset = 0;
-  bool _hasMore = true;
   bool _isLoading = false;
   String _error = '';
-  List<String> _words = [];
-  List<String> _history = [];
-  List<String> _favorites = [];
+  final List<String> _words = [];
+  final List<String> _history = [];
+  final List<String> _favorites = [];
+
+  String _searchQuery = '';
+  List<String> _filteredWords = [];
+  bool _isSearching = false;
 
   WordState(this._wordRepository);
 
   List<String> get words => _words;
+  List<String> get filteredWords => _isSearching ? _filteredWords : _words;
+
   bool get isLoading => _isLoading;
   String get error => _error;
-  bool get hasMore => _hasMore;
-  bool isFavorite(String word) => _favorites.contains(word);
+  bool get isSearching => _isSearching;
 
   List<String> get history => _history;
   List<String> get favorites => _favorites;
+  bool isFavorite(String word) => _favorites.contains(word);
 
   Future<void> loadInitialWords() async {
-    _offset = 0;
     _words.clear();
-    _hasMore = true;
-    await fetchMoreWords();
-  }
-
-  Future<void> fetchMoreWords() async {
-    if (_isLoading || !_hasMore) return;
-
     _isLoading = true;
     notifyListeners();
 
     try {
-      List<String> newWords =
-          await _wordRepository.getWordsPaginated(_offset, _pageSize);
-      if (newWords.isEmpty) {
-        _hasMore = false;
-      } else {
-        _offset += newWords.length;
-        _words.addAll(newWords);
-      }
+      final allWords = await _wordRepository.getWords();
+      _words.addAll(allWords);
       _error = '';
+      _applySearch();
     } catch (e) {
       _error = 'Erro ao carregar palavras: ${e.toString()}';
     }
@@ -55,9 +45,27 @@ class WordState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void searchWords(String query) {
+    _searchQuery = query;
+    _isSearching = query.isNotEmpty;
+    _applySearch();
+    notifyListeners();
+  }
+
+  void _applySearch() {
+    if (_isSearching) {
+      _filteredWords = _words
+          .where(
+              (word) => word.toLowerCase().contains(_searchQuery.toLowerCase()))
+          .toList();
+    } else {
+      _filteredWords = [];
+    }
+  }
+
   void addToHistory(String word) {
     if (!_history.contains(word)) {
-      _history.insert(0, word); // mais recente primeiro
+      _history.insert(0, word);
       notifyListeners();
     }
   }

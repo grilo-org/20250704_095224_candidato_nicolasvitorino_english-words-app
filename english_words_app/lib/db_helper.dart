@@ -6,7 +6,6 @@ class DBHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-
     _database = await _initDB();
     return _database!;
   }
@@ -45,7 +44,6 @@ class DBHelper {
     });
   }
 
-  // Verifica se as palavras já foram carregadas
   Future<bool> areWordsLoaded() async {
     final db = await database;
     final List<Map<String, dynamic>> result = await db.query('words');
@@ -55,7 +53,6 @@ class DBHelper {
   Future<void> insertWordsBulk(List<String> words) async {
     final db = await database;
 
-    // Usando uma transação única para todas as inserções
     await db.transaction((txn) async {
       Batch batch = txn.batch();
 
@@ -66,7 +63,6 @@ class DBHelper {
           conflictAlgorithm: ConflictAlgorithm.replace,
         );
       }
-
       await batch.commit(noResult: true);
     });
   }
