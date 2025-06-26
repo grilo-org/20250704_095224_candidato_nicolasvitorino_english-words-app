@@ -37,7 +37,7 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
       _player.play();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Erro ao tocar áudio')),
+        const SnackBar(content: Text('Error when playing audio')),
       );
     }
   }
@@ -46,7 +46,7 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalhes'),
+        title: const Text('Word Details'),
         leading: const BackButton(),
         actions: [
           Consumer<WordState>(
@@ -72,7 +72,7 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
           if (!snapshot.hasData || snapshot.data == null) {
             return const Center(
               child: Text(
-                'Palavra não encontrada 😕',
+                'Word not found 😕',
                 style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
             );
@@ -107,12 +107,12 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
                     child: ElevatedButton.icon(
                       onPressed: () => _playAudio(wordData.audioUrl!),
                       icon: Icon(Icons.volume_up),
-                      label: Text('Ouvir pronúncia'),
+                      label: Text('Play Pronunciation'),
                     ),
                   ),
                 ],
                 const SizedBox(height: 24),
-                const Text("Significados:",
+                const Text("Meanings:",
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 12),

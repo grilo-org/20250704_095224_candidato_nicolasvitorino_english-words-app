@@ -1,4 +1,3 @@
-import 'package:english_words_app/presentation/home_screen/ui/home_screen.dart';
 import 'package:english_words_app/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
