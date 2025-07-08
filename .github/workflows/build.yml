@@ -34,9 +34,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectBaseDir=./english_words_app
-            -Dsonar.sources=.
+            -Dsonar.projectBaseDir=.
+            -Dsonar.projectKey=grilo-org_20250704_095224_candidato_nicolasvitorino_english-words-app
+            -Dsonar.organization=grilo-org
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.sources=english_words_app/lib
             -Dsonar.language=dart
             -Dsonar.c.file.suffixes=-
             -Dsonar.cpp.file.suffixes=-
             -Dsonar.objc.file.suffixes=-
+            -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/*.gen.dart
