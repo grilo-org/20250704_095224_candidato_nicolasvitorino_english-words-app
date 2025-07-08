@@ -34,7 +34,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectBaseDir=./taski_todo
+            -Dsonar.projectBaseDir=./english_words_app
             -Dsonar.sources=.
             -Dsonar.language=dart
             -Dsonar.c.file.suffixes=-
