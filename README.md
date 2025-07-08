@@ -1,6 +1,6 @@
 # English Words App
 
-Aplicativo desenvolvido para Android e IOS utilizado para explorar, visualizar e gerenciar palavras em inglês de forma offline, com suporte a histórico, favoritos, fonética e áudio de pronúncia.
+#Aplicativo desenvolvido para Android e IOS utilizado para explorar, visualizar e gerenciar palavras em inglês de forma offline, com suporte a histórico, favoritos, fonética e áudio de pronúncia.
 
 ---
 
